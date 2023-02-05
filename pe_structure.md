@@ -44,8 +44,16 @@
     
     ![e](resources/timedatestamp.png)
     
-    `0x61B7DC63` written in big endian (`0x63DCB761`) indicates that at the time the EXE was created it had been 1,675,409,249 many seconds since 00:00 January 1, 1970. This comes out to be about 53.09 years. Thus the EXE was created in Feb of 2023.
+    `0x61B7DC63` written in big endian (`0x63DCB761`) indicates that at the time the EXE was created it had been 1,675,409,249 many seconds since 00:00 January 1, 1970. This comes out to be about 53.09 years. Thus, the EXE was created in Feb of 2023.
   
-  * 
+  * **PointerToSymbolTable**: The following 4 bytes
+    
+    ![f](resources/pointertosymboltable.png)
+    
+    `0x00780000` written in big endian (`0x00007800`) indicates that the symbol table starts at offset `0x7800`.
   
-  
+  * **NumberOfSymbols**: The following 4 bytes
+    
+    ![numofsymbols](resources/numberofsymbols.png)
+    
+    
