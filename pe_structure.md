@@ -8,7 +8,7 @@
   
   The first bytes of the PE file is occupied by the DOS signature and header. The first two bytes of this header will always be `0x4D5A`, which in ASCII is `MZ`. This is referred to as the signature. This magic number is one of the mutliple ways of identifying MS-DOS compatible files.
   
-  ![](/home/nimrafets/.config/marktext/images/2023-02-04-23-00-22-image.png)
+  ![msdos](resources/msdos.png)
 
 * #### MS-DOS Stub
   
@@ -24,25 +24,25 @@
   
   This header contains the following pieces of information as described in this table
   
-  ![](/home/nimrafets/.config/marktext/images/2023-02-04-23-52-34-image.png)
+  ![b](resources/coff-table.png)
   
   Based on the table above we have the following values for the example EXE
   
   * **Machine**: The follwoing two bytes 
     
-    ![](/home/nimrafets/.config/marktext/images/2023-02-04-23-58-16-image.png)
+    ![c](resources/machine.png)
     
     `0x4C01` written in big endian (`0x014C`) would indicate the target machine would be Intel 386 or later processors and compatible processors.
   
   * **NumberOfSections**: The following two bytes
     
-    ![](/home/nimrafets/.config/marktext/images/2023-02-05-00-02-17-image.png)
+    ![d](resources/numberofsections.png)
     
     `0x0D00` written in big endian (`0x000D`) indicate there are 13 sections in the section table.
   
   * **TimeDateStamp**: The following 4 bytes
     
-    ![](/home/nimrafets/.config/marktext/images/2023-02-05-00-05-04-image.png)
+    ![e](resources/timedatestamp.png)
     
     `0x61B7DC63` written in big endian (`0x63DCB761`) indicates that at the time the EXE was created it had been 1,675,409,249 many seconds since 00:00 January 1, 1970. This comes out to be about 53.09 years. Thus the EXE was created in Feb of 2023.
   
