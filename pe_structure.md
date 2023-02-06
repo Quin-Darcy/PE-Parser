@@ -6,17 +6,19 @@
 
 * #### MS-DOS Header
   
-  The first bytes of the PE file is occupied by the DOS signature and header. The first two bytes of this header will always be `0x4D5A`, which in ASCII is `MZ`. This is referred to as the signature. This magic number is one of the mutliple ways of identifying MS-DOS compatible files.
+  The first 64 bytes of the PE file is occupied by the DOS header. The first two bytes of this header will always be `0x4D5A`, which in ASCII is `MZ`. This is referred to as the signature. This magic number is one of the mutliple ways of identifying MS-DOS compatible files.
   
-  ![msdos](resources/msdos.png)
+  ![msdosheader](resources/msdosheader.png)
+  
+  These 64 bytes are broken down into 19 members which define and outline the environment which the DOS EXE contained in the MS-DOS stub is run. One very note worthy member is located (and always located) at offset `0x3C`. The value at this address is equal to the offset of the PE signature which is a 4-byte signature that identifies the file as a PE format image file. 
 
 * #### MS-DOS Stub
   
-  The MS-DOS stub is a valid application that runs under MS-DOS. It is placed at the front of the EXE image. The linker places a default stub here, which prints out the message "This program cannot be run in DOS mode" when the image is run in MS-DOS. 
+  The MS-DOS stub is a valid application that runs under MS-DOS. It is placed at the front of the EXE image and immediately after the DOS header. The linker places a default stub here, which prints out the message "This program cannot be run in DOS mode" when the image is run in MS-DOS. 
   
-  At location `0x3C`, the stub has the file offset to the the PE signature. This information enables Windows to properly execute the image file, even though it has an MS-DOS stub. So the length (in bytes) of the MS-DOS header is equal to the value at location `0x3c`
+  ![msdosstub](resources/msdosstub.png)
 
-* #### Signature
+* #### PE Signature
   
   After the MS-DOS stub, at the file offset specified at offset `0x3C` , is a 4-byte signature that identifies the file as a PE format image file. The complete signature is `0x50450000` which in ASCII is `PE\0\0`.
 
