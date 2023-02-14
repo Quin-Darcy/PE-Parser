@@ -20,7 +20,7 @@
 
 * #### PE Signature
   
-  After the MS-DOS stub, at the file offset specified at offset `0x3C` , is a 4-byte signature that identifies the file as a PE format image file. The complete signature is `0x50450000` which in ASCII is `PE\0\0`.
+  After the MS-DOS stub, at the file offset specified at offset `0x3C` , is a 4-byte signature that identifies the file as a PE format image file. The complete signature is u`0x50450000` which in ASCII is `PE\0\0`.
 
 * #### COFF File Header
   

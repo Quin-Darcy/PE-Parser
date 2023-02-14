@@ -2,6 +2,7 @@
 #include <vector>
 #include <fstream>
 #include "dosheader.h"
+#include "coffheader.h"
 
 typedef unsigned char BYTE;
 
@@ -52,9 +53,18 @@ int main(int argc, char* argv[])
     bytes_from_file = get_bytes(file_path);
 
     DOSHeader dos_header(bytes_from_file);
+    COFFHeader coff_header(bytes_from_file, dos_header.e_lfanew);
 
-    printf("%02X\n", dos_header.e_magic);
-    printf("%02X\n", bytes_from_file[dos_header.e_lfanew]); 
+    printf("Magic Number: 0x%02X\n", dos_header.e_magic);
+    printf("PE Signature: 0x%02X\n\n", coff_header.pe_signature); 
+    printf("Machine: 0x%02X\n", coff_header.machine); 
+    printf("NumberOfSections: %d\n", coff_header.number_of_sections); 
+    printf("TimeDateStamp: %d\n", coff_header.time_date_stamp); 
+    printf("PointerToSymbolTable: 0x%02X\n", coff_header.pointer_to_symbol_table);
+    printf("NumberOfSymbols: %d\n", coff_header.number_of_symbols);
+    printf("SizeOfOptionalHeader: %d\n", coff_header.size_of_optional_header);
+    printf("Characteristics: 0x%02X\n", coff_header.characteristics);
+
 
     return 0;
 }
