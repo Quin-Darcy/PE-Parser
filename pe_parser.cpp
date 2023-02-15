@@ -58,7 +58,7 @@ int main(int argc, char* argv[])
     OPTHeader opt_header(bytes_from_file, coff_header.base_address+24);
 
     printf("\n%-25s 0x%x\n", "MagicNumber:", dos_header.e_magic);
-    printf("%-25s 0x%x\n\n", "PESignature:", coff_header.pe_signature; 
+    printf("%-25s 0x%x\n\n", "PESignature:", coff_header.pe_signature); 
 
     printf("%-25s 0x%x\n", "BaseAddress:", coff_header.base_address); 
     printf("%-25s 0x%x\n", "Machine:", coff_header.machine); 
@@ -72,6 +72,22 @@ int main(int argc, char* argv[])
 
     printf("%-25s 0x%x\n", "BaseAddress:", opt_header.base_address); 
     printf("%-25s 0x%x\n", "MagicNumber:", opt_header.magic_number); 
+    printf("%-25s 0x%x\n", "MajorLinkerVersion:", opt_header.major_linker_version); 
+    printf("%-25s 0x%x\n", "MinorLinkerVersion:", opt_header.minor_linker_version); 
+    printf("%-25s %d\n", "SizeOfCode:", opt_header.size_of_code); 
+    printf("%-25s %d\n", "SizeOfInitializedData:", opt_header.size_of_initialized_data); 
+    printf("%-25s %d\n", "SizeOfUninitializedData:", opt_header.size_of_uninitialized_data); 
+    printf("%-25s 0x%x\n", "AddressOfEntryPoint:", opt_header.address_of_entry_point);
+    printf("%-25s 0x%x\n", "BaseOfCode:", opt_header.base_of_code);  
+
+    if (opt_header.magic_number == 267)
+    {
+        printf("%-25s 0x%x\n\n", "BaseOfData:", opt_header.base_of_data);    
+    }
+    else
+    {
+        printf("\n");
+    }
 
     printf("\n");
 

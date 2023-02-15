@@ -124,7 +124,7 @@
     
     ![sizeofunindata](resources/sizeofuninitializeddata.png)
     
-    `0x00020000 = 0x20000` shows that the size of the uninitialzed data section (BSS) is equal to 131,072 bytes.
+    `0x00020000 = 0x200` shows that the size of the uninitialzed data section (BSS) is equal to 512 bytes.
   
   * **AddressOfEntryPoint**: The next 4 bytes
     
@@ -132,8 +132,14 @@
     
     `0xE0120000 = 0x12E0` gives the address of the entry point relative to the image base when the executable file is loaded into memory. For program images, this is the starting address. 
   
-  * **BaseOfCode**: The last 4 bytes
+  * **BaseOfCode**: The next 4 bytes
     
     ![baseofcode](resources/baseofcode.png)
     
     `0x00100000 = 0x1000` gives the address that is relative to the image base of the beginning-of-code section when it is loaded into memory.
+  
+  * **BaseOfData**: The last 4 bytes
+    
+    ![baseofdata](resources/baseofdata.png)
+    
+    `0x00400000 = 0x4000`is only present in PE32 executables. This is the address that is relative to the image base of the beginning-of-data section when it is loaded into memory.
