@@ -3,6 +3,7 @@
 #include <fstream>
 #include "dosheader.h"
 #include "coffheader.h"
+#include "optheader.h"
 
 typedef unsigned char BYTE;
 
@@ -54,16 +55,22 @@ int main(int argc, char* argv[])
 
     DOSHeader dos_header(bytes_from_file);
     COFFHeader coff_header(bytes_from_file, dos_header.e_lfanew);
+    OPTHeader opt_header(bytes_from_file, coff_header.base_address+24);
 
-    printf("Magic Number: 0x%02X\n", dos_header.e_magic);
-    printf("PE Signature: 0x%02X\n\n", coff_header.pe_signature); 
-    printf("Machine: 0x%02X\n", coff_header.machine); 
+    printf("%-20s", "MagicNumber: %10Xh\n", dos_header.e_magic);
+    printf("PESignature: %10Xh\n\n", coff_header.pe_signature); 
+
+    printf("BaseAddress: %10Xh\n", coff_header.base_address);
+    printf("Machine: %10Xh\n", coff_header.machine); 
     printf("NumberOfSections: %d\n", coff_header.number_of_sections); 
     printf("TimeDateStamp: %d\n", coff_header.time_date_stamp); 
-    printf("PointerToSymbolTable: 0x%02X\n", coff_header.pointer_to_symbol_table);
+    printf("PointerToSymbolTable: %10Xh\n", coff_header.pointer_to_symbol_table);
     printf("NumberOfSymbols: %d\n", coff_header.number_of_symbols);
     printf("SizeOfOptionalHeader: %d\n", coff_header.size_of_optional_header);
-    printf("Characteristics: 0x%02X\n", coff_header.characteristics);
+    printf("Characteristics: %10Xh\n\n", coff_header.characteristics);
+
+    printf("BaseAddress: %10Xh\n", opt_header.base_address);
+    printf("MagicNumber: %10Xh\n", opt_header.magic_number);
 
 
     return 0;

@@ -27,7 +27,7 @@ class DOSHeader
         uint16_t e_oemid;                     // OEM identifier (for e_oeminfo)
         uint16_t e_oeminfo;                   // OEM information; e_oemid specific
         uint16_t e_res2[10];                  // Reserved words
-        long e_lfanew;                        // File address of new exe header
+        uint32_t e_lfanew;                        // File address of new exe header
         
         DOSHeader(std::vector<BYTE> bytes_from_file);
 };

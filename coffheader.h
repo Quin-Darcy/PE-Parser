@@ -9,7 +9,7 @@ typedef unsigned char BYTE;
 class COFFHeader
 {
 	public:
-		long pe_offset;
+		uint32_t base_address;
 		uint32_t pe_signature;
 		uint16_t machine;
 		uint16_t number_of_sections;
@@ -19,7 +19,7 @@ class COFFHeader
 		uint16_t size_of_optional_header;
 		uint16_t characteristics;
 
-		COFFHeader(std::vector<BYTE> bytes_from_file, long pe_sig);
+		COFFHeader(std::vector<BYTE> bytes_from_file, uint32_t offset);
 };
 
 #endif
