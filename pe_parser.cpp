@@ -57,21 +57,23 @@ int main(int argc, char* argv[])
     COFFHeader coff_header(bytes_from_file, dos_header.e_lfanew);
     OPTHeader opt_header(bytes_from_file, coff_header.base_address+24);
 
-    printf("%-20s", "MagicNumber: %10Xh\n", dos_header.e_magic);
-    printf("PESignature: %10Xh\n\n", coff_header.pe_signature); 
+    printf("\n%-25s 0x%x\n", "MagicNumber:", dos_header.e_magic);
+    printf("%-25s 0x%x\n\n", "PESignature:", coff_header.pe_signature; 
 
-    printf("BaseAddress: %10Xh\n", coff_header.base_address);
-    printf("Machine: %10Xh\n", coff_header.machine); 
-    printf("NumberOfSections: %d\n", coff_header.number_of_sections); 
-    printf("TimeDateStamp: %d\n", coff_header.time_date_stamp); 
-    printf("PointerToSymbolTable: %10Xh\n", coff_header.pointer_to_symbol_table);
-    printf("NumberOfSymbols: %d\n", coff_header.number_of_symbols);
-    printf("SizeOfOptionalHeader: %d\n", coff_header.size_of_optional_header);
-    printf("Characteristics: %10Xh\n\n", coff_header.characteristics);
+    printf("%-25s 0x%x\n", "BaseAddress:", coff_header.base_address); 
+    printf("%-25s 0x%x\n", "Machine:", coff_header.machine); 
+    printf("%-25s %d\n", "NumberOfSections:", coff_header.number_of_sections); 
+    printf("%-25s %d\n", "TimeDateStamp:", coff_header.time_date_stamp); 
+    printf("%-25s 0x%x\n", "PointerToSymbolTable:", coff_header.pointer_to_symbol_table); 
+    printf("%-25s %d\n", "NumberOfSymbols:", coff_header.number_of_symbols); 
+    printf("%-25s %d\n", "SizeOfOptionalHeader:", coff_header.size_of_optional_header);  
+    printf("%-25s 0x%x\n\n", "Characteristics:", coff_header.characteristics); 
 
-    printf("BaseAddress: %10Xh\n", opt_header.base_address);
-    printf("MagicNumber: %10Xh\n", opt_header.magic_number);
 
+    printf("%-25s 0x%x\n", "BaseAddress:", opt_header.base_address); 
+    printf("%-25s 0x%x\n", "MagicNumber:", opt_header.magic_number); 
+
+    printf("\n");
 
     return 0;
 }
